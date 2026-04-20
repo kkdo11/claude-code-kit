@@ -209,7 +209,7 @@ MIT. Use it, fork it, ship it.
 
 ## About
 
-Built by [@kdw030612](https://github.com/kdw030612) while running:
+Built by [@kkdo11](https://github.com/kkdo11) while running:
 
 - **[llm-opt](https://github.com/kdw030612/llm-opt)** — FastAPI proxy with
   semantic caching (L1 hash + L2 HNSW) that cut GPU calls by 66%.
