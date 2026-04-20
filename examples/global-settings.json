@@ -1,0 +1,83 @@
+{
+  "_comment": "Example ~/.claude/settings.json using the global hooks. Replace {HOME} with your actual home path (Claude Code does not expand $HOME in this file).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 {HOME}/.claude/hooks/security_gate.py",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {HOME}/.claude/hooks/snapshot.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {HOME}/.claude/hooks/session_start.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {HOME}/.claude/hooks/prompt_inject.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {HOME}/.claude/hooks/update_timestamp.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {HOME}/.claude/hooks/session_end.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash {HOME}/.claude/hooks/notify.sh",
+            "timeout": 3
+          }
+        ]
+      }
+    ]
+  }
+}
